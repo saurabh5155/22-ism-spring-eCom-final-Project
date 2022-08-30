@@ -1,5 +1,7 @@
 package com.bean;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name= "users")
@@ -34,6 +40,9 @@ public class UserBean {
 	@JoinColumn(name = "roleId",nullable = false)
 	private RoleBean roles;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "users")
+	private Set<AddressBean> address;
 	
 	public Integer getUserId() {
 		return userId;
@@ -89,6 +98,12 @@ public class UserBean {
 	}
 	public void setRoles(RoleBean roles) {
 		this.roles = roles;
+	}
+	public Set<AddressBean> getAddress() {
+		return address;
+	}
+	public void setAddress(Set<AddressBean> address) {
+		this.address = address;
 	}
 	
 }

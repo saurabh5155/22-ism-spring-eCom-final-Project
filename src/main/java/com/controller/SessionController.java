@@ -40,7 +40,7 @@ public class SessionController {
 				userBean.setIsActive(true);
 				userBean.setPassword(bcrypt.encode(userBean.getPassword()));
 				userRepo.save(userBean);
-				
+
 				res.setData(userBean);
 				res.setMsg("User Added");
 				res.setCode(1);
@@ -68,7 +68,8 @@ public class SessionController {
 		ResponseBean<UserBean> resUser = new ResponseBean<>();
 		UserBean user = userRepo.findByEmail(loginBean.getEmail());
 		if (user != null) {
-			if (user.getEmail().equals(loginBean.getEmail()) && bcrypt.matches(loginBean.getPassword(), user.getPassword())) {
+			if (user.getEmail().equals(loginBean.getEmail())
+					&& bcrypt.matches(loginBean.getPassword(), user.getPassword())) {
 				resUser.setData(user);
 				resUser.setMsg("Login Done");
 				resUser.setCode(1);

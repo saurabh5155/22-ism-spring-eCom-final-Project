@@ -6,7 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class PasswordEncode {
-	
+
 	@Bean
 	public BCryptPasswordEncoder encodePass() {
 		System.out.println("........BCRYPY Encoder is ready........");
