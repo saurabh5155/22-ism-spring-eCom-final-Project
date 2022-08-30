@@ -11,6 +11,7 @@ import com.bean.RoleBean;
 public interface RoleRepository extends CrudRepository<RoleBean, Integer>{
 	
 	List<RoleBean> findAll();
-	
 	RoleBean findByRoleId(Integer roleId);
+	
+	RoleBean findByRoleName(String roleName);
 }

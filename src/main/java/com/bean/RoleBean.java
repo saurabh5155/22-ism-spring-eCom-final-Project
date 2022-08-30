@@ -1,10 +1,15 @@
 package com.bean;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -17,6 +22,10 @@ public class RoleBean {
 	
 	private String roleName;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "roles")
+	private Set<UserBean> users;
+	
 	public Integer getRoleId() {
 		return roleId;
 	}
@@ -31,6 +40,14 @@ public class RoleBean {
 
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
+	}
+
+	public Set<UserBean> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<UserBean> users) {
+		this.users = users;
 	}
 	
 }
